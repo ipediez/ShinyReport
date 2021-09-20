@@ -6,7 +6,7 @@ Shiny App to explore results from different analyses, such as Differential Expre
 
 ## Shiny Apps available
 
-- [Differential Expression Analysis](###differential-expression)
+- [Differential Expression Analysis](#differential-expression)
 
 ### Differential Expression
 

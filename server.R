@@ -145,20 +145,4 @@ server <- function(input, output) {
     compare_table(table_MA_T, table_MA_B, input, first_sign="DOWN",
                   second_sign="UP")
   )
-  
-  output$stringT <- renderUI({
-    tags$iframe(src="https://version-11-5.string-db.org/cgi/network?networkId=bhxSHXGN5uzV",
-                style="width:100%;height: 100vh",
-                frameborder="0",
-                id="iframe")
-  })
-  
-  output$stringB <- renderUI({
-    tags$iframe(src="https://version-11-5.string-db.org/cgi/network?networkId=bqychPWBfg6z",
-                style="width:100%;height: 100vh",
-                frameborder="0",
-                id="iframe")
-  })
-  
-  
 }

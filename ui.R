@@ -49,12 +49,10 @@ sidebar <- dashboardSidebar(
     menuItem("DE Meta-analysis \n Tissue vs Blood",
              tabName = "Tissue-Blood",
              icon = icon("magnet", lib="glyphicon")),
-    menuItem("String interaction tissue",
-             tabName= "String-T",
-             icon = icon("random", lib="glyphicon")),
-    menuItem("String interaction blood",
-             tabName= "String-B",
-             icon = icon("tint", lib="glyphicon"))
+    menuItem(a("String interaction tissue", href="https://version-11-5.string-db.org/cgi/network?networkId=bhxSHXGN5uzV", target="_blank"),
+             tabName= "String-T"),
+    menuItem(a("String interaction blood", href="https://version-11-5.string-db.org/cgi/network?networkId=bhxSHXGN5uzV", target="_blank"),
+             tabName= "String-B")
   )
 )
 
@@ -227,23 +225,7 @@ body <- dashboardBody(
               )
             )
       
-    ),
-    tabItem(tabName = "String-T",
-            p("This page shows the protein-protein interaction network computed
-              by String database. The cutoff values are logFC=0.6, FDR=0.01 and
-              a number of studies equal or greater than 15. To activate the 
-              horizontal scrolling bar, please drag to the bottom the outter 
-              vertical scrolling bar at the right of the page."),
-            htmlOutput("stringT")
-            ),
-    tabItem(tabName = "String-B",
-            p("This page shows the protein-protein interaction network computed
-              by String database. The cutoff values are logFC=0.4, FDR=0.05 and
-              a number of studies equal or greater than 2. To activate the 
-              horizontal scrolling bar, please drag to the bottom the outter 
-              vertical scrolling bar at the right of the page."),
-            htmlOutput("stringB")
-            )
+    )
   )
 )
 

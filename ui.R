@@ -1,32 +1,5 @@
 library(shinydashboard)
 
-# JS code to detect browser ----------------------------------------------------
-js <- "
-// execute the code after the shiny session has started
-$(document).on('shiny:sessioninitialized', function(event) {
-  // browser detection from https://stackoverflow.com/a/5918791/8099834
-  navigator.sayswho= (function(){
-    var ua= navigator.userAgent, tem, 
-    M= ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\\/))\\/?\\s*(\\d+)/i) || [];
-    if(/trident/i.test(M[1])){
-        tem=  /\\brv[ :]+(\\d+)/g.exec(ua) || [];
-        return 'IE '+(tem[1] || '');
-    }
-    if(M[1]=== 'Chrome'){
-        tem= ua.match(/\\b(OPR|Edge)\\/(\\d+)/);
-        if(tem!= null) return tem.slice(1).join(' ').replace('OPR', 'Opera');
-    }
-    M= M[2]? [M[1], M[2]]: [navigator.appName, navigator.appVersion, '-?'];
-    if((tem= ua.match(/version\\/(\\d+)/i))!= null) M.splice(1, 1, tem[1]);
-    return M.join(' ');
-  })(); 
-  // pass browser info from JS to R
-  Shiny.onInputChange('myBrowser', navigator.sayswho); 
-});
-"
-
-tags$script(HTML(js))
-
 header <- dashboardHeader(title = "IVO-UBB: PDAC")
 #header <- dashboardHeader(title = span(img(src="UBB.png", width = 190)))
 
@@ -159,8 +132,9 @@ body <- dashboardBody(
                 width = 6,
                 DTOutput("table_MA_T")
               ),
+              conditionalPanel(condition ="input.Gene_MA_T != 'Type an ENTREZ ID'",
               box(title = "Forest plot",
-                  plotlyOutput("forest_MA_T")
+                  plotlyOutput("forest_MA_T"))
               )
             )),
     tabItem(tabName = "MA-blood",
@@ -195,9 +169,10 @@ body <- dashboardBody(
                 width = 6,
                 DTOutput("table_MA_B")
               ),
+              conditionalPanel(condition ="input.Gene_MA_B != 'Type an ENTREZ ID'",
               box(title = "Forest plot",
                   plotlyOutput("forest_MA_B")
-              )
+              ))
             )),
     tabItem(tabName = "Tissue-Blood",
             p("This page shows the intersection of genes between both meta-analyses.

@@ -59,6 +59,7 @@ body <- dashboardBody(
                   numericInput("FDR_DE_T", h3("Select FDR threshold"),
                                value=0.05))
             ),
+            downloadButton('download_DE_T', "Download the data"),
             fluidRow(
               box(
                 title = "Results table",
@@ -93,6 +94,7 @@ body <- dashboardBody(
                   numericInput("FDR_DE_B", h3("Select FDR threshold"),
                                value=0.05))
             ),
+            downloadButton('download_DE_B', "Download the data"),
             fluidRow(
               box(
                 title = "Results table",
@@ -126,6 +128,7 @@ body <- dashboardBody(
                   textInput("Gene_MA_T", h3("Forest plot:"),
                             "Type an ENTREZ ID"))
             ),
+            downloadButton('download_MA_T', "Download the data"),
             fluidRow(
               box(
                 title = "Results table",
@@ -163,6 +166,7 @@ body <- dashboardBody(
                   textInput("Gene_MA_B", h3("Forest plot:"),
                             "Type an ENTREZ ID"))
             ),
+            downloadButton('download_MA_B', "Download the data"),
             fluidRow(
               box(
                 title = "Results table",

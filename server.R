@@ -8,6 +8,12 @@ server <- function(input, output) {
   output$table_DE_T <- renderDataTable(
     my_table(expression[[input$dataset_tissue]], input$logfc_DE_T, input$FDR_DE_T)
   )
+  output$download_DE_T <- downloadHandler(
+    filename = function(){paste0("DEA_", input$dataset_tissue, ".csv")},
+    content = function(fname){
+      write.csv(my_table(expression[[input$dataset_tissue]], input$logfc_DE_T, input$FDR_DE_T), fname)
+    }
+  )
 
   output$total_genes_DE_T <- renderText(
     paste("Numero total de genes analizados:",
@@ -36,6 +42,13 @@ server <- function(input, output) {
   
   output$table_DE_B <- renderDataTable(
     my_table(expression[[input$dataset_blood]], input$logfc_DE_B, input$FDR_DE_B)
+  )
+  
+  output$download_DE_B <- downloadHandler(
+    filename = function(){paste0("DEA_", input$dataset_tissue, ".csv")},
+    content = function(fname){
+      write.csv(my_table(expression[[input$dataset_blood]], input$logfc_DE_B, input$FDR_DE_B), fname)
+    }
   )
   
   output$total_genes_DE_B <- renderText(
@@ -71,6 +84,13 @@ server <- function(input, output) {
     my_table(table_MA_T, input$logfc_MA_T, input$FDR_MA_T, input$studies_MA_T)
   )
   
+  output$download_MA_T <- downloadHandler(
+    filename = function(){"metaanalysis.csv"},
+    content = function(fname){
+      write.csv(my_table(table_MA_T, input$logfc_MA_T, input$FDR_MA_T, input$studies_MA_T), fname)
+    }
+  )
+  
   output$total_genes_MA_T <- renderText(
     paste("Numero total de genes analizados:",
           sum_values(table_MA_T, input$logfc_MA_T, input$FDR_MA_T, input$studies_MA_T)[1])
@@ -103,6 +123,13 @@ server <- function(input, output) {
   
   output$table_MA_B <- renderDataTable(
     my_table(table_MA_B, input$logfc_MA_B, input$FDR_MA_B, input$studies_MA_B)
+  )
+  
+  output$download_MA_B <- downloadHandler(
+    filename = function(){"metaanalysis.csv"},
+    content = function(fname){
+      write.csv(my_table(table_MA_B, input$logfc_MA_B, input$FDR_MA_B, input$studies_MA_B), fname)
+    }
   )
   
   output$total_genes_MA_B <- renderText(

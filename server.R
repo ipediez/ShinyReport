@@ -172,4 +172,8 @@ server <- function(input, output) {
     compare_table(table_MA_T, table_MA_B, input, first_sign="DOWN",
                   second_sign="UP")
   )
+  # Functional Enrichment - Compare --------------------------------------------
+  output$enrichment_BP <- renderDataTable(
+    bp_table(BP_enrichment)
+  )
 }

@@ -25,7 +25,10 @@ sidebar <- dashboardSidebar(
     menuItem(a("String interaction tissue", href="https://version-11-5.string-db.org/cgi/network?networkId=bhxSHXGN5uzV", target="_blank"),
              tabName= "String-T"),
     menuItem(a("String interaction blood", href="https://version-11-5.string-db.org/cgi/network?networkId=bhxSHXGN5uzV", target="_blank"),
-             tabName= "String-B")
+             tabName= "String-B"),
+    menuItem("Gene Ontology \n Biological Process",
+             tabName = "GO-BP",
+             icon = icon("stats", lib="glyphicon"))
   )
 )
 
@@ -204,6 +207,20 @@ body <- dashboardBody(
               )
             )
       
+    ),
+    tabItem(tabName = "GO-BP",
+            p("This page shows the results of functional enrichment with MDGSA R
+            package. The followin filters have been applied: adjusted p value
+              lower than 0.05, functions are mapped to at least 11 genes and
+              less than 200 genes. This last filter avoids too specific ontologies
+              and too wide ones."),
+            fluidRow(
+              box(
+                title = "Gene Ontology: Biological Process",
+                width = 12,
+                DTOutput("enrichment_BP")
+              ))
+            
     )
   )
 )

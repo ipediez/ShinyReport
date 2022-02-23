@@ -16,6 +16,8 @@ results_MA_T <- readRDS("./Data/tissue_metaanalysis.RDS")
 table_MA_B <- read.csv2("./Data/all.results.blood.txt", sep="\t", stringsAsFactors = F)
 results_MA_B <- readRDS("./Data/blood_metaanalysis.RDS")
 
+BP_enrichment <- read.csv("../Data/Functional_enrichment/mdgsa_tissue/sig_metaanalysis_bp.tsv", sep = "\t")
+
 # COMMON FUNCTIONS -------------------------------------------------------------
 filter_data <- function(data, logFC, FDR, studies=FALSE){
   if (studies == FALSE) {
@@ -231,3 +233,16 @@ compare_table <- function(first_table, second_table, input, first_sign="UP",
 }
 
 shinyAppDir("./")
+
+# Functional enrichment --------------------------------------------------------
+## Define GO enrichment table
+bp_table <- function(data){
+  my_tab <- data %>%
+    datatable(escape=FALSE,
+              filter = "top",
+              options=list(pageLength=6,
+                           autoWidth=TRUE),
+              rownames = TRUE)
+  
+  return(my_tab)
+}

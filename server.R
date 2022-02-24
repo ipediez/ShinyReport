@@ -174,6 +174,6 @@ server <- function(input, output) {
   )
   # Functional Enrichment - Compare --------------------------------------------
   output$enrichment_BP <- renderDataTable(
-    bp_table(BP_enrichment)
+    bp_table(BP_enrichment, input$slider_bp)
   )
 }

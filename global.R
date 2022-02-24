@@ -236,8 +236,10 @@ shinyAppDir("./")
 
 # Functional enrichment --------------------------------------------------------
 ## Define GO enrichment table
-bp_table <- function(data){
+bp_table <- function(data, genes){
   my_tab <- data %>%
+    filter(N > genes[1],
+           N < genes[2])%>%
     datatable(escape=FALSE,
               filter = "top",
               options=list(pageLength=6,

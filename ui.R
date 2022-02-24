@@ -216,6 +216,15 @@ body <- dashboardBody(
               and too wide ones."),
             fluidRow(
               box(
+                width = 12,
+                column(4,
+                       # Copy the line below to make a slider range 
+                       sliderInput("slider_bp", label = h3("Genes Range"), min = 10, 
+                                   max = 200, value = c(10, 200)))
+              )
+            ),
+            fluidRow(
+              box(
                 title = "Gene Ontology: Biological Process",
                 width = 12,
                 DTOutput("enrichment_BP")
